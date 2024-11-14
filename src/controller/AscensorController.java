@@ -10,6 +10,7 @@ public class AscensorController {
     static Ascensor ascensor;
     static AscensorWindow ascensorWindow;
     static PisoActualField pisoActualField; // textfield superior de la ventana
+    static MusicaHilo musicaHilo;
 
     public AscensorController(int pisoActual, int plantas) {
         AscensorController.pisoActual = pisoActual;
@@ -33,5 +34,21 @@ public class AscensorController {
             BajarHilo bajarHilo = new BajarHilo(ascensor, planta);
             bajarHilo.start();
         }
+        if(!enMovimiento()) {
+            reproducirMusica("src/resources/ascensor.wav");
+        }
+
+    }
+
+    public static boolean enMovimiento() {
+        return ascensor.isEnMovimiento();
+    }
+
+    public static void reproducirMusica(String rutaArchivo) {
+        if (musicaHilo != null && musicaHilo.isAlive()) {
+            musicaHilo.interrupt();
+        }
+        musicaHilo = new MusicaHilo(rutaArchivo);
+        musicaHilo.start();
     }
 }
