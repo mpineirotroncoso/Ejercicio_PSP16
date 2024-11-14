@@ -19,9 +19,9 @@ public class MusicaHilo extends Thread {
             Clip clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY); // Reproduce en bucle
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Reproducir en bucle
 
-            // Esperar a que termine la reproducción
+            // Ejecutar solo cuando este en movimiento
             while (!Thread.interrupted() && AscensorController.enMovimiento()) {
                 Thread.sleep(1000);
             }
