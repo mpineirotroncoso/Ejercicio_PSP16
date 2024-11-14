@@ -23,6 +23,7 @@ public class SubirHilo extends Thread {
                 throw new RuntimeException(e);
             }
             ascensor.subir();
+            AscensorController.pisoActualField.setText("Piso actual: " + ascensor.getPisoActual());
             System.out.println("Subiendo al piso " + ascensor.getPisoActual());
         }
         ascensor.setEnMovimiento(false);
